@@ -8,10 +8,10 @@ CITIES = ['ALA', 'MOW', 'TSE', 'LED', 'CIT']
 FORMAT = '%d/%m/%Y'
 LIMIT = 5
 
-BASE_URI_FLIGHTS = 'https://api.skypicker.com/flights?fly_from={0}&fly_to={1}&date_from={2}&date_to={3}&partner=mebr0&' \
-                   'curr=KZT&asc=1'
-BASE_URI_CHECK = 'https://booking-api.skypicker.com/api/v0.1/check_flights?v=2&booking_token={0}&partner=mebr0&bnum=3&p' \
-                 'num=2&affily=picky_market&currency=KZT'
+BASE_URI_FLIGHTS = 'https://api.skypicker.com/flights?fly_from={0}&fly_to={1}&date_from={2}&date_to={3}&' \
+                   'partner=mebr0&curr=KZT&asc=1'
+BASE_URI_CHECK = 'https://booking-api.skypicker.com/api/v0.1/check_flights?v=2&booking_token={0}&partner=mebr0&' \
+                 'bnum=3&pnum=2&affily=picky_market&currency=KZT'
 
 
 @periodic_task(run_every=(timedelta(minutes=9)), name='search_tickets')
