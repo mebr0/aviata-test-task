@@ -4,7 +4,8 @@ from datetime import timedelta, date, datetime
 from celery.task import periodic_task
 from djcelery.backends.cache import cache
 
-CITIES = ['ALA', 'MOW', 'TSE', 'LED', 'CIT']
+CITIES_1 = ['ALA', 'TSE', 'ALA', 'MOW', 'ALA', 'CIT', 'TSE', 'MOW', 'TSE', 'LED']
+CITIES_2 = ['TSE', 'ALA', 'MOW', 'ALA', 'CIT', 'ALA', 'MOW', 'TSE', 'LED', 'TSE']
 FORMAT = '%d/%m/%Y'
 LIMIT = 5
 
@@ -20,10 +21,9 @@ def search_tickets():
 
     start = datetime.now().replace(microsecond=0)
 
-    for i in range(len(CITIES)):
-        for j in range(i + 1, len(CITIES)):
-            print('Doing from ' + CITIES[i] + ' to ' + CITIES[j])
-            search_single_direction(CITIES[i], CITIES[j])
+    for i in range(len(CITIES_1)):
+        print('Doing from ' + CITIES_1[i] + ' to ' + CITIES_2[i])
+        search_single_direction(CITIES_1[i], CITIES_2[i])
 
     # for key in cache.keys('*'):
     #     print(key + ' --- ' + str(cache.get(key)))
