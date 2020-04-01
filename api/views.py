@@ -2,21 +2,22 @@ from django.core.cache import cache
 from django.http import JsonResponse
 
 
-def search_ticket(request):
+def get_ticket(request):
     date = request.GET.get('date')
     fly_from = request.GET.get('fly_from')
     fly_to = request.GET.get('fly_to')
 
     if not date or not fly_to or not fly_from:
-        return JsonResponse({'status': 'OK', 'message': 'Not all required fields'})
+        return JsonResponse({'message': 'Not all required fields'}, status=400)
 
-    tickets = cache.get(date)
+    tickets = cache.get('tickets')
 
     if not tickets:
-        return JsonResponse({'status': 'OK', 'message': 'Ticket not in cache'})
+        return JsonResponse({'message': 'Tickets not found'}, status=404)
 
-    for ticket in tickets:
-        if ticket.get('from') == fly_from and ticket.get('to') == fly_to:
-            return JsonResponse({'status': 'OK', 'data': ticket, 'date': date})
+    ticket = tickets.get(f'{date}_{fly_from}_{fly_to}')
 
-    return JsonResponse({'status': 'OK', 'message': 'Ticket not found'})
+    if not ticket:
+        return JsonResponse({'message': 'Ticket not in cache'}, status=404)
+
+    return JsonResponse({'data': ticket, 'date': date, 'fly_from': fly_from, 'fly_to': fly_to}, status=200)
