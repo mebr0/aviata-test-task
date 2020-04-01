@@ -1,18 +1,20 @@
 # Aviata
 
-Objective: Backend developer position
+**Objective:** Backend developer position
 
-## Test task
+## Task
 
 Test task was send by HR manager in _docx_ file _(in current repository)_
 
 **Date:** January 24, 2020
 
-**Duration:** 2-3 days
+**Deadline:** 2-3 days
 
-**Submission details:** this repository
+**Submission type:** this repository
 
 ## Review and Rework
+
+Review was done by one of leaders of product teams in Aviata
 
 > Есть пустые модули в проекте: admin.py, models.py, tests.py. 
 > Не надо их создовать если они не нужны.
@@ -91,3 +93,9 @@ tickets = response.json().get('data')
 > Неэффективное использование кэша в tasks.py, рушится атомарность.
 
 * Save cache atomically
+
+## Conclusion
+
+Done all reworks except **django forms**
+
+Interesting task which gives simple understanding how Aviata services work
